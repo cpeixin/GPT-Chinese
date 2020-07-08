@@ -5,6 +5,7 @@ import argparse
 from tqdm import trange
 from transformers import GPT2LMHeadModel
 
+"""python generate.py --length=500 --nsamples=4 --prefix=婚纱摄影 --fast_pattern --save_samples --save_samples_path=demo/"""
 
 def is_word(word):
     for item in list(word):
