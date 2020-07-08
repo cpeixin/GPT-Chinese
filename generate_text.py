@@ -131,10 +131,12 @@ def insert_mysql(keyword, text):
     conn = pymysql.connect(
         host="216.83.53.203",
         user="root",
-        password="CklC(yCR2E1R",
+        password="CklC(yC&R2E1R",
         database="articles",
         port=3306,
-        charset="utf8mb4")
+        charset="utf8mb4",
+        autocommit=True)
+
     cursor = conn.cursor()  # 执行完毕返回的结果集默认以元组显示
     sql = 'insert into t_article(keyword,content) values(%s,%s)'
     args = (keyword, text)
