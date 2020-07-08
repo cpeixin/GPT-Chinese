@@ -125,6 +125,24 @@ def generate(n_ctx, model, context, length, tokenizer, temperature=1, top_k=0, t
                                top_p=top_p,
                                repitition_penalty=repitition_penalty, device=device)
 
+def insert_mysql(keyword, text):
+    import pymysql
+    # 连接database
+    conn = pymysql.connect(
+        host="216.83.53.203",
+        user="root",
+        password="CklC(yCR2E1R",
+        database="articles",
+        port=3306,
+        charset="utf8mb4")
+    cursor = conn.cursor()  # 执行完毕返回的结果集默认以元组显示
+    sql = 'insert into t_article(keyword,content) values(%s,%s)'
+    args = (keyword, text)
+    cursor.execute(sql, args)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -204,7 +222,8 @@ def main():
             info = "=" * 40 + " SAMPLE " + str(generated) + " " + "=" * 40 + "\n"
             print(info)
             text = ''.join(text).replace('##', '').strip()
-            return text
+            insert_mysql(raw_text, text)
+            # return text
 
 
 if __name__ == '__main__':
