@@ -4,7 +4,8 @@ import os
 import argparse
 from tqdm import trange
 from transformers import GPT2LMHeadModel
-
+import sys
+sys.path.append("/root/api/main-api/GPT-Chinese/")
 """python generate_text.py --length=1000 --nsamples=1 --prefix=摄影是什么 --fast_pattern"""
 
 
